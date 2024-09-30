@@ -54,4 +54,16 @@ class ProductController extends Controller
             'msg' => 'cap nhat loi'
         ]);
     }
+
+    public function delete($id)
+    {
+        $isDeleted  = $this->productService->delete($id);
+        if ($isDeleted )
+            return response()->json([
+                'msg' => 'Sản phẩm đã được xóa (soft delete) thành công.'
+            ],200);
+        return response()->json([
+            'msg' => 'Sản phẩm không tồn tại.'
+        ],404);
+    }
 }

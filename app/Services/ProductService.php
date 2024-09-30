@@ -32,4 +32,12 @@ class ProductService {
         $param['status'] = 0;
         return $product->update($param);
     }
+
+    public function delete($id)
+    {
+        $product = $this->model->find($id);
+        if ($product)
+            return $product->delete();
+        return false;
+    }
 }
