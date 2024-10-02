@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Log;
 class ProductService {
     protected $model;
 
+    //Inject model
     public function __construct(Product $product)
     {
         $this->model = $product;
     }
 
+    //Get all products
     public function create($params)
     {
         try {
@@ -27,9 +29,21 @@ class ProductService {
         }
     }
 
+    //Get all products
     public function update($product, $param)
     {
         $param['status'] = 0;
         return $product->update($param);
     }
+
+    //Get all products
+    public function delete(Product $product)
+    {
+    try {
+        return $product->delete();
+    } catch (\Exception $e) {
+        return false;
+        }
+    }
+
 }
