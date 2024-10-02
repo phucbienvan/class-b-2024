@@ -7,7 +7,6 @@ use App\Http\Requests\Api\Product\UpdateRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -53,5 +52,17 @@ class ProductController extends Controller
         return response()->json([
             'msg' => 'cap nhat loi'
         ]);
+    }
+
+    public function delete($id)
+    {
+        $product = $this->productService->delete($id);
+        return new ProductResource($product);
+    }
+
+    public function forceDelete($id)
+    {
+        $product = $this->productService->forceDelete($id);
+        return new ProductResource($product);
     }
 }
