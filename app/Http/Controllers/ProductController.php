@@ -54,4 +54,11 @@ class ProductController extends Controller
             'msg' => 'cap nhat loi'
         ]);
     }
+
+
+    public function delete($id)
+    {
+        $product = $this->productService->delete($id);
+        return new ProductResource($product);
+    }
 }
