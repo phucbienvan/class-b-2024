@@ -54,4 +54,19 @@ class ProductController extends Controller
             'msg' => 'cap nhat loi'
         ]);
     }
+
+
+    public function destroy(Product $product)
+    {
+        $result = $this->productService->delete($product);
+        if ($result) {
+        return response()->json([
+            'msg' => 'Xóa thành công'
+        ]);
+        }
+
+        return response()->json([
+            'msg' => 'Xóa thất bại'
+        ], 400);
+}
 }

@@ -32,4 +32,8 @@ class ProductService {
         $param['status'] = 0;
         return $product->update($param);
     }
+    public function delete(Product $product)
+{
+    return $product->delete();
+}
 }
