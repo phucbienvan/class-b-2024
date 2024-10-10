@@ -56,17 +56,9 @@ class ProductController extends Controller
     }
 
 
-    public function destroy(Product $product)
+    public function delete($id)
     {
-        $result = $this->productService->delete($product);
-        if ($result) {
-        return response()->json([
-            'msg' => 'Xóa thành công'
-        ]);
-        }
-
-        return response()->json([
-            'msg' => 'Xóa thất bại'
-        ], 400);
-}
+        $product = $this->productService->delete($id);
+        return new ProductResource($product);
+    }
 }

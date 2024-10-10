@@ -23,5 +23,5 @@ Route::group(['prefix'=>'products','as'=>'products.'], function(){
     Route::post('', [ProductController::class, 'store']);
     Route::get('/{product}', [ProductController::class, 'show']);
     Route::put('/{product}', [ProductController::class, 'update']);
-    Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+    Route::delete('/{product}', [ProductController::class, 'destroy']); // Corrected this line
 });

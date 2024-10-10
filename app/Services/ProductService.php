@@ -32,8 +32,17 @@ class ProductService {
         $param['status'] = 0;
         return $product->update($param);
     }
-    public function delete(Product $product)
-{
-    return $product->delete();
-}
+   
+
+    public function delete($id)
+    {
+        try {
+            $product = $this->model->findOrFail($id);
+            $product->delete();
+            return $product;
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return false;
+        }
+    }
 }
