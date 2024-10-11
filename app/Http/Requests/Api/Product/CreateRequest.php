@@ -24,15 +24,18 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255'],
-            'price' => ['required', 'integer'],
+            'name' => ['required','max:255'],
+            'price' => ['required','integer','min:10'],
         ];
     }
 
     public function messages()
     {
-        return [
-            'name.required' => 'Hay nhap name',
+        return[
+            'name.required' => 'Enter name!',
+            'name.max' => 'Enter lower than 255 charaters!',
+            'price.required' => 'Enter price!',
+            'price.min' => 'Enter higher than 10!',
         ];
     }
 }

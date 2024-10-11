@@ -23,4 +23,7 @@ Route::group(['prefix'=>'products','as'=>'products.'], function(){
     Route::post('', [ProductController::class, 'store']);
     Route::get('/{product}', [ProductController::class, 'show']);
     Route::put('/{product}', [ProductController::class, 'update']);
+    Route::delete('/softdetele/{product}', [ProductController::class, 'softDelete']);
+    Route::delete('/harddetele/{product}', [ProductController::class, 'hardDelete']);
+    Route::patch('/{id}', [ProductController::class, 'restore']);
 });

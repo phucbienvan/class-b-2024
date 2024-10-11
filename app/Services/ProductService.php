@@ -16,20 +16,58 @@ class ProductService {
 
     public function create($params)
     {
-        try {
-            $params['status'] = 1;
-
+        try{
             return $this->model->create($params);
-        } catch (Exception $exception) {
+        }catch(Exception $exception){
             Log::error($exception);
-            
+
             return false;
         }
+        
     }
 
     public function update($product, $param)
     {
-        $param['status'] = 0;
-        return $product->update($param);
+        try{
+            return $product->update($param);
+        }catch(Exception $exception){
+            Log::error($exception);
+            return false;
+        }
+    }
+
+    public function softDelete($product)
+    {
+        try{
+            return $product->delete();
+        }catch(Exception $exception){
+            Log::error($exception);
+            return false;
+        }  
+    }
+
+    public function hardDelete($product)
+    {
+        try{
+            return $product->forceDelete();
+        }catch(Exception $exception){
+            Log::error($exception);
+            return false;
+        }  
+    }
+
+    public function restore($id)
+    {
+        try{
+            $product = $this->model->withTrashed()->find($id);
+            if ($product->trashed()) {
+                return $product->restore();
+            } else {
+                return false;
+            } 
+        }catch(Exception $exception){
+            Log::error($exception);
+            return false;
+        }  
     }
 }
