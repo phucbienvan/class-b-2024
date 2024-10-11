@@ -32,4 +32,34 @@ class ProductService {
         $param['status'] = 0;
         return $product->update($param);
     }
+
+    public function delete(Product $product)
+    {
+        try
+        {
+            return $product->delete();
+        }
+        catch (Exception $exception)
+        {
+            Log::error($exception);
+            return false;
+        }
+    }
+
+    public function restore(Product $product)
+    {
+        try
+        {
+            if ($product->trashed()) {
+                return $product->restore();
+            } else {
+                return false;
+            }
+        }
+        catch (Exception $exception)
+        {
+            Log::error($exception);
+            return false;
+        }
+    }
 }
