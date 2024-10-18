@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/', function () {
         'code' => 200
     ]);
 });
+
+Route::get('categories', [CategoryController::class,'index']);

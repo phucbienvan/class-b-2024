@@ -32,4 +32,11 @@ class ProductService {
         $param['status'] = 0;
         return $product->update($param);
     }
+
+    public function getList()
+    {
+        return $this->model
+            ->where('status', 1)
+            ->orderBy('created_at', 'DESC');
+    }
 }

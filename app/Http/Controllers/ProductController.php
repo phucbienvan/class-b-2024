@@ -18,6 +18,13 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
+    public function index(Request $request)
+    {
+        $result = $this->productService->getList();
+
+        return ProductResource::apiPaginate($result, $request);
+    }
+
     public function store(CreateRequest $createRequest)
     {
         $requests = $createRequest->validated();
@@ -25,7 +32,8 @@ class ProductController extends Controller
         $result = $this->productService->create($requests);
 
         if ($result) {
-            return new ProductResource($result);
+            // return new ProductResource($result);
+            return response()->api_success("Created product success", $result);
         }
 
         return response()->json([
@@ -53,5 +61,15 @@ class ProductController extends Controller
         return response()->json([
             'msg' => 'cap nhat loi'
         ]);
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return response()->json([
+            'msg'=> 'Deleted success',
+            'data' => true
+        ], 200);
     }
 }
