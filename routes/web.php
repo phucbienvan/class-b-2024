@@ -23,4 +23,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('categories', [CategoryController::class,'index']);
+Route::get('categories', [CategoryController::class,'index'])->name('categories.index');
+
+Route::get('categories/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('categories/{category}', [CategoryController::class,'update'])->name('categories.update');
+Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
