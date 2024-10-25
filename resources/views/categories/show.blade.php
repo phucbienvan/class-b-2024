@@ -1,12 +1,6 @@
 
-<h1>Categories</h1>
-@if (session('success'))
-    <p>{{ session('success') }}</p>
-@endif
+<h1>Detail</h1>
 
-@if (session('error'))
-    <p>{{ session('error') }}</p>
-@endif
 
 <table>
     <tr>
@@ -15,12 +9,8 @@
       <th>Action</th>
 
     </tr>
-    @foreach ($items as $category)
     <tr>
-      <td>
-        <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}
-        </a>
-      </td>
+      <td>{{ $category->name }}</td>
       <td>{{ $category->description }}</td>
       <td>
         <a href="{{ route('categories.edit', $category->id) }}">
@@ -29,7 +19,6 @@
       </td>
 
     </tr>
-    @endforeach
   </table>
 
   <style>
