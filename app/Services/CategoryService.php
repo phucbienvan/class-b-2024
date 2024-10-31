@@ -14,6 +14,17 @@ class CategoryService {
         return $this->category->orderBy('id','desc')->get();
     }
 
+    public function create($params)
+    {
+        try {
+            return $this->category->create($params);
+        } catch(Exception $exception) {
+            Log::error(message: $exception);
+
+            return false;
+        }
+    }
+
     public function update($category, $data)
     {
         try {
