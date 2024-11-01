@@ -1,5 +1,5 @@
 
-<h1>Categories</h1>
+<h1>Categories a</h1>
 @if (session('success'))
     <p>{{ session('success') }}</p>
 @endif
