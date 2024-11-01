@@ -1,5 +1,6 @@
 
 <h1>Categories</h1>
+<a href="{{ route('categories.create') }}"><button class="btn-primary">Create Category</button></a>
 @if (session('success'))
     <p>{{ session('success') }}</p>
 @endif
@@ -49,5 +50,21 @@
     }
     tr:nth-child(even) {
         background-color: #f9f9f9;
+    }
+    .btn-primary {
+        width: 100px;
+        padding: 4px;
+        background-color: #3f51b5;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #1b30a3;
     }
 </style>
