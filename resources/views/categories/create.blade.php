@@ -18,7 +18,10 @@
             @enderror
         </div>
 
+        <div class="button-group">
+        <button type="button" class="btn btn-secondary"><a href="{{ route('categories.index') }}" style="display:block;">Cancel</a></button>
         <button type="submit" class="btn btn-primary">Create Category</button>
+        </div>
     </form>
 </div>
 
@@ -58,10 +61,16 @@
         font-size: 14px;
     }
 
-    .btn-primary {
-        width: 100%;
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 50%;
         padding: 10px;
-        background-color: #007bff;
         border: none;
         border-radius: 4px;
         color: white;
@@ -69,7 +78,16 @@
         cursor: pointer;
     }
 
+    .btn-primary {
+        background-color: #007bff;
+    }
     .btn-primary:hover {
         background-color: #0056b3;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
     }
 </style>
