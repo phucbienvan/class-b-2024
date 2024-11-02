@@ -42,4 +42,21 @@ class CategoryController extends Controller
     {
         return view('categories.show', ['category'=> $category]);
     }
+    public function create()
+    {
+        return view('categories.create'); 
+    }
+    public function store(UpdateRequest $request)
+    {
+
+    $validatedData = $request->validated();
+    $category = $this->categoryService->create($validatedData);
+
+    if ($category) {
+        return redirect()->route('categories.index')->with('success', 'Thêm mới thành công');
+    }
+
+    return redirect()->route('categories.index')->with('error', 'Thêm mới thất bại');
+    }
+
 }

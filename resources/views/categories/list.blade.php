@@ -1,5 +1,6 @@
 
 <h1>Categories</h1>
+<a href="{{ route('categories.create') }}">Thêm mới </a>
 @if (session('success'))
     <p>{{ session('success') }}</p>
 @endif
