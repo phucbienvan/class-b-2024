@@ -28,3 +28,6 @@ Route::get('categories', [CategoryController::class,'index'])->name('categories.
 Route::get('categories/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('categories/{category}', [CategoryController::class,'update'])->name('categories.update');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+// Thêm mới 
+Route::get('create', [CategoryController::class, 'create'])->name('categories.create'); 
+Route::post('create', [CategoryController::class, 'store'])->name('categories.store'); 

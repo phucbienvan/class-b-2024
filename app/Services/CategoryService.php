@@ -24,4 +24,15 @@ class CategoryService {
             return false;
         }
     }
+    public function create(array $data)
+    {
+        try {
+            // Tạo mới category
+            return Category::create($data);
+        } catch (\Exception $e) {
+            // Ghi lại lỗi vào log
+            Log::error($e->getMessage());
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
 }
