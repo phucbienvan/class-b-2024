@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class ProductService {
+class ProductService
+{
     protected $model;
 
     public function __construct(Product $product)
@@ -22,7 +23,7 @@ class ProductService {
             return $this->model->create($params);
         } catch (Exception $exception) {
             Log::error($exception);
-            
+
             return false;
         }
     }
@@ -33,6 +34,29 @@ class ProductService {
         return $product->update($param);
     }
 
+    public function delete(Product $product)
+    {
+        try {
+            return $product->delete();
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return false;
+        }
+    }
+
+    public function restore(Product $product)
+    {
+        try {
+            if ($product->trashed()) {
+                return $product->restore();
+            } else {
+                return false;
+            }
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return false;
+        }
+    }
     public function getList()
     {
         return $this->model

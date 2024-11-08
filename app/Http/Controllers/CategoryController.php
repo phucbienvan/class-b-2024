@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Web\Category\CreateRequest;
 use App\Http\Requests\Web\Category\UpdateRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
@@ -18,7 +19,25 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryService->getList();
 
-        return view('categories.list', ['items'=> $categories]);
+        return view('categories.list', ['items' => $categories]);
+    }
+
+    public function create()
+    {
+
+        return view('categories.create');
+    }
+
+    public function store(CreateRequest $request)
+    {
+        $request = $request->validated();
+        $result = $this->categoryService->create($request);
+
+        if ($result) {
+            return redirect()->route('categories.index')->with('success', 'Store success');
+        }
+
+        return redirect()->route('categories.index')->with('error', 'Stored fail');
     }
 
     public function edit(Category $category)
@@ -30,7 +49,7 @@ class CategoryController extends Controller
     {
         $request = $request->validated();
         $result = $this->categoryService->update($category, $request);
-        
+
         if ($result) {
             return redirect()->route('categories.index')->with('success', 'Updated success');
         }
@@ -40,6 +59,6 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('categories.show', ['category'=> $category]);
+        return view('categories.show', ['category' => $category]);
     }
 }

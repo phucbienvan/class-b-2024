@@ -7,7 +7,10 @@ use App\Http\Requests\Api\Product\UpdateRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Services\ProductService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -63,13 +66,35 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy(Product $product)
+    public function delete(Product $product)
     {
-        $product->delete();
+        $result = $this->productService->delete($product);
+        if ($result) {
+            return response()->json([
+                'status' => 'sucess',
+                'message' => 'Xóa thành công',
+            ], Response::HTTP_NO_CONTENT);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Xóa không thành công',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
 
-        return response()->json([
-            'msg'=> 'Deleted success',
-            'data' => true
-        ], 200);
+    public function restore(Product $product)
+    {
+        $result = $this->productService->restore($product);
+        if ($result) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Khôi phục thành công',
+            ], Response::HTTP_OK);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message"=> "Khôi phục không thành công',
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 }
