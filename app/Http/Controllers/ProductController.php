@@ -21,6 +21,13 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
+    public function index(Request $request)
+    {
+        $result = $this->productService->getList();
+
+        return ProductResource::apiPaginate($result, $request);
+    }
+
     public function store(CreateRequest $createRequest)
     {
         $requests = $createRequest->validated();
@@ -28,7 +35,8 @@ class ProductController extends Controller
         $result = $this->productService->create($requests);
 
         if ($result) {
-            return new ProductResource($result);
+            // return new ProductResource($result);
+            return response()->api_success("Created product success", $result);
         }
 
         return response()->json([
@@ -61,17 +69,15 @@ class ProductController extends Controller
     public function delete(Product $product)
     {
         $result = $this->productService->delete($product);
-        if ($result){
+        if ($result) {
             return response()->json([
-                'status'=> 'sucess',
-                'message'=> 'Xóa thành công',
+                'status' => 'sucess',
+                'message' => 'Xóa thành công',
             ], Response::HTTP_NO_CONTENT);
-        }
-        else
-        {
+        } else {
             return response()->json([
-                'status'=> 'failed',
-                'message'=> 'Xóa không thành công',
+                'status' => 'failed',
+                'message' => 'Xóa không thành công',
             ], Response::HTTP_BAD_REQUEST);
         }
     }
@@ -79,16 +85,14 @@ class ProductController extends Controller
     public function restore(Product $product)
     {
         $result = $this->productService->restore($product);
-        if ($result){
+        if ($result) {
             return response()->json([
-                'status'=> 'success',
-                'message'=> 'Khôi phục thành công',
+                'status' => 'success',
+                'message' => 'Khôi phục thành công',
             ], Response::HTTP_OK);
-        }
-        else
-        {
+        } else {
             return response()->json([
-                'status'=> 'failed',
+                'status' => 'failed',
                 'message"=> "Khôi phục không thành công',
             ], Response::HTTP_BAD_REQUEST);
         }
