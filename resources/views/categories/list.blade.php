@@ -8,6 +8,8 @@
     <p>{{ session('error') }}</p>
 @endif
 
+<a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+
 <table>
     <tr>
       <th>Name</th>

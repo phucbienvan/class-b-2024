@@ -24,4 +24,15 @@ class CategoryService {
             return false;
         }
     }
+
+    public function store($data)
+    {
+        try {
+            return $this->category->create($data);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return false;
+        }
+    }
 }
