@@ -1,5 +1,15 @@
 
 <h1>Categories</h1>
+<a href="{{ route('categories.create') }}" style="
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+">Create Category</a>
+
 @if (session('success'))
     <p>{{ session('success') }}</p>
 @endif

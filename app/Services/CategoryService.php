@@ -24,4 +24,9 @@ class CategoryService {
             return false;
         }
     }
+
+    public function create($params)
+    {
+        return $this->category->create($params);
+    }
 }
