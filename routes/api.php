@@ -23,10 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::group(['prefix'=>'products','as'=>'products.', 'middleware' => 'auth:sanctum'], function(){
-    Route::get('', [ProductController::class,'index']);
-    Route::post('', [ProductController::class, 'store']);
-    Route::get('/{product}', [ProductController::class, 'show'])->withTrashed();
-    Route::put('/{product}', [ProductController::class, 'update']);
-    Route::delete('/{product}', [ProductController::class,'destroy']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::group(['prefix'=>'products','as'=>'products.'], function(){
+        Route::get('', [ProductController::class,'index']);
+        Route::post('', [ProductController::class, 'store']);
+        Route::get('/{product}', [ProductController::class, 'show'])->withTrashed();
+        Route::put('/{product}', [ProductController::class, 'update']);
+        Route::delete('/{product}', [ProductController::class,'destroy']);
+    });
 });

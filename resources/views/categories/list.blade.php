@@ -9,6 +9,16 @@
     border-radius: 4px;
     margin-bottom: 20px;
 ">Create Category</a>
+<a href="{{ route('logout') }}" style="
+display: inline-block;
+background-color: #af4c6d;
+color: white;
+padding: 10px 15px;
+text-decoration: none;
+border-radius: 4px;
+    margin-bottom: 20px;
+">Logout</a>
+
 
 @if (session('success'))
     <p>{{ session('success') }}</p>
