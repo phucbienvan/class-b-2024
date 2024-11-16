@@ -23,7 +23,6 @@ class ProductService {
 
             return false;
         }
-        
     }
 
     public function update($product, $param)

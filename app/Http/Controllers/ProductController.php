@@ -40,6 +40,9 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $user = auth()->user();
+        dd($user);
+
         return response()->json([
             'status' => 'success',
             'message' => 'Product was successfully gotten',
